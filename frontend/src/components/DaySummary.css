@@ -1,0 +1,135 @@
+.day-summary {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  padding: 24px 32px 22px 32px;
+  margin-bottom: 18px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.day-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.day-summary-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.day-summary-values {
+  text-align: right;
+  font-size: 1.08rem;
+  color: #111;
+}
+
+.day-summary-details {
+  color: #888;
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+
+.day-summary-btn {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.day-summary-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+  .day-summary {
+    padding: 20px 28px 18px 28px;
+    max-width: 100%;
+  }
+  
+  .day-summary-title {
+    font-size: 1rem;
+  }
+  
+  .day-summary-values {
+    font-size: 1rem;
+  }
+  
+  .day-summary-details {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+  
+  .day-summary-btn {
+    padding: 9px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .day-summary {
+    padding: 16px 24px 14px 24px;
+    border-radius: 12px;
+  }
+  
+  .day-summary-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .day-summary-title {
+    font-size: 0.95rem;
+  }
+  
+  .day-summary-values {
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  
+  .day-summary-details {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .day-summary-btn {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 360px) {
+  .day-summary {
+    padding: 12px 20px 10px 20px;
+  }
+  
+  .day-summary-title {
+    font-size: 0.9rem;
+  }
+  
+  .day-summary-values {
+    font-size: 0.85rem;
+  }
+  
+  .day-summary-details {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .day-summary-btn {
+    padding: 7px 16px;
+    font-size: 0.85rem;
+  }
+} 
