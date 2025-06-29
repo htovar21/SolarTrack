@@ -1,0 +1,248 @@
+.hourly-forecast-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hourly-forecast-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.hourly-forecast-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 8px;
+  border-radius: 8px;
+  background: #f7fafc;
+}
+
+.hourly-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  min-width: 0;
+}
+
+.hourly-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.hourly-time {
+  font-size: 0.7rem;
+  color: #718096;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hourly-icon {
+  font-size: 1.2rem;
+  margin: 2px 0;
+}
+
+.hourly-temp {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.hourly-uv {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #d69e2e;
+  background: rgba(214, 158, 46, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.hourly-precip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #3182ce;
+  background: rgba(49, 130, 206, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.hourly-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.legend-label {
+  font-weight: 600;
+}
+
+.legend-value {
+  color: #718096;
+}
+
+.uv-legend-label {
+  color: #d69e2e;
+}
+
+.uv-legend-value {
+  color: #d69e2e;
+}
+
+.rain-legend-label {
+  color: #3182ce;
+}
+
+.rain-legend-value {
+  color: #3182ce;
+}
+
+/* Scrollbar personalizada */
+.hourly-forecast-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.hourly-forecast-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.hourly-forecast-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.hourly-forecast-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+  .hourly-forecast-container {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hourly-forecast-card {
+    padding: 20px;
+  }
+  
+  .hourly-forecast-title {
+    font-size: 1.1rem;
+  }
+  
+  .hourly-forecast-container {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  
+  .hourly-item {
+    padding: 6px 3px;
+  }
+  
+  .hourly-time {
+    font-size: 0.65rem;
+  }
+  
+  .hourly-icon {
+    font-size: 1rem;
+  }
+  
+  .hourly-temp {
+    font-size: 0.75rem;
+  }
+  
+  .hourly-uv,
+  .hourly-precip {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+  }
+  
+  .hourly-legend {
+    gap: 20px;
+  }
+  
+  .legend-item {
+    font-size: 0.75rem;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .hourly-forecast-card {
+    padding: 16px;
+  }
+  
+  .hourly-forecast-title {
+    font-size: 1rem;
+  }
+  
+  .hourly-forecast-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    max-height: 250px;
+  }
+  
+  .hourly-item {
+    padding: 4px 2px;
+  }
+  
+  .hourly-time {
+    font-size: 0.6rem;
+  }
+  
+  .hourly-icon {
+    font-size: 0.9rem;
+  }
+  
+  .hourly-temp {
+    font-size: 0.7rem;
+  }
+  
+  .hourly-uv,
+  .hourly-precip {
+    font-size: 0.6rem;
+    padding: 1px 3px;
+    min-width: 18px;
+  }
+  
+  .hourly-legend {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .legend-item {
+    font-size: 0.7rem;
+  }
+} 

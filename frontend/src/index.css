@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #333;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Mejoras para dispositivos móviles */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Prevenir zoom en inputs en iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Mejoras para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  .sidebar-menu li,
+  .add-interval-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Mejoras de accesibilidad */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Prevenir desbordamiento horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
