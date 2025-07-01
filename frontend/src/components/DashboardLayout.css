@@ -2,21 +2,24 @@
   display: flex;
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
 }
 
 .dashboard-content {
   flex: 1;
   margin-left: 0;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Header del dashboard */
 .dashboard-header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 16px 24px;
   display: flex;
   align-items: center;
@@ -26,6 +29,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  min-height: 72px;
 }
 
 .hamburger-btn {
@@ -39,10 +43,17 @@
   cursor: pointer;
   padding: 0;
   transition: all 0.3s ease;
+  flex-shrink: 0;
+  min-width: 24px;
+  min-height: 20px;
 }
 
 .hamburger-btn:hover {
   transform: scale(1.1);
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
 }
 
 .hamburger-line {
@@ -59,6 +70,7 @@
 
 .header-title {
   flex: 1;
+  min-width: 0;
 }
 
 .header-title h1 {
@@ -70,6 +82,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-title p {
@@ -77,6 +92,9 @@
   color: #718096;
   margin: 0;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Overlay para móviles */
@@ -90,7 +108,9 @@
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .sidebar-overlay.active {
@@ -98,10 +118,11 @@
   visibility: visible;
 }
 
-/* Responsive para tablets */
+/* Responsive para tablets grandes */
 @media (max-width: 1024px) {
   .dashboard-header {
     padding: 14px 20px;
+    min-height: 68px;
   }
   
   .header-title h1 {
@@ -113,7 +134,7 @@
   }
 }
 
-/* Responsive para móviles */
+/* Responsive para tablets */
 @media (max-width: 768px) {
   .dashboard-content {
     margin-left: 0;
@@ -122,11 +143,14 @@
   .dashboard-header {
     padding: 12px 16px;
     gap: 16px;
+    min-height: 64px;
   }
   
   .hamburger-btn {
     width: 22px;
     height: 18px;
+    min-width: 22px;
+    min-height: 18px;
   }
   
   .hamburger-line {
@@ -142,16 +166,19 @@
   }
 }
 
-/* Responsive para móviles pequeños */
+/* Responsive para móviles */
 @media (max-width: 480px) {
   .dashboard-header {
     padding: 10px 12px;
     gap: 12px;
+    min-height: 60px;
   }
   
   .hamburger-btn {
     width: 20px;
     height: 16px;
+    min-width: 20px;
+    min-height: 16px;
   }
   
   .hamburger-line {
@@ -164,5 +191,97 @@
   
   .header-title p {
     font-size: 0.75rem;
+  }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+  .dashboard-header {
+    padding: 8px 10px;
+    gap: 10px;
+    min-height: 56px;
+  }
+  
+  .hamburger-btn {
+    width: 18px;
+    height: 14px;
+    min-width: 18px;
+    min-height: 14px;
+  }
+  
+  .hamburger-line {
+    height: 1.5px;
+  }
+  
+  .header-title h1 {
+    font-size: 1rem;
+  }
+  
+  .header-title p {
+    font-size: 0.7rem;
+  }
+}
+
+/* Mejoras para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .hamburger-btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hamburger-btn:hover {
+    transform: none;
+  }
+  
+  .hamburger-btn:active {
+    transform: scale(0.9);
+  }
+  
+  .dashboard-header {
+    min-height: 64px;
+  }
+}
+
+/* Soporte para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+  .dashboard-header {
+    background: rgba(26, 32, 44, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .header-title h1 {
+    color: #f7fafc;
+  }
+  
+  .header-title p {
+    color: #a0aec0;
+  }
+}
+
+/* Mejoras para dispositivos con notch */
+@supports (padding: max(0px)) {
+  .dashboard-header {
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-header {
+      padding-top: max(12px, env(safe-area-inset-top));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-header {
+      padding-top: max(10px, env(safe-area-inset-top));
+      padding-left: max(12px, env(safe-area-inset-left));
+      padding-right: max(12px, env(safe-area-inset-right));
+    }
   }
 } 

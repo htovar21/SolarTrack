@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { updateUser } from '../services/api';
 import './UserProfile.css';
 
-function UserProfile({ onBack }) {
+function UserProfile() {
   const userData = JSON.parse(localStorage.getItem('user')) || {};
   const token = localStorage.getItem('token');
   const [form, setForm] = useState({
@@ -45,15 +45,6 @@ function UserProfile({ onBack }) {
     <div className="user-profile-card">
       <div className="user-profile-header">
         <h2>Mi Perfil</h2>
-        {onBack && (
-          <button 
-            onClick={onBack} 
-            className="back-button"
-            type="button"
-          >
-            ← Volver
-          </button>
-        )}
       </div>
       
       <form onSubmit={handleSubmit} className="user-profile-form">

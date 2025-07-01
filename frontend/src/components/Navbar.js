@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { login, register } from '../services/api';
 import './Navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
+  const { 
+    isAuthenticated, 
+    logout: contextLogout, 
+    login: contextLogin,
+    showLogin, 
+    showSignup, 
+    showLoginModal, 
+    showSignupModal, 
+    closeModals 
+  } = useAuth();
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    setIsAuth(!!localStorage.getItem('token'));
-  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(''); setLoading(true);
+    setError(''); 
+    setLoading(true);
     const res = await login(email, password);
     setLoading(false);
     if (res.token) {
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('user', JSON.stringify(res.user));
-      setShowLogin(false);
-      setIsAuth(true);
-      setEmail(''); setPassword('');
+      contextLogin(res.token, res.user);
+      setEmail('');
+      setPassword('');
       navigate('/dashboard');
     } else {
       setError(res.message || 'Error al iniciar sesión');
@@ -37,18 +41,18 @@ function Navbar() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(''); setLoading(true);
+    setError(''); 
+    setLoading(true);
     const res = await register(name, email, password);
     setLoading(false);
     if (res.message && res.message.includes('registrado')) {
       // Login automático tras registro
       const loginRes = await login(email, password);
       if (loginRes.token) {
-        localStorage.setItem('token', loginRes.token);
-        localStorage.setItem('user', JSON.stringify(loginRes.user));
-        setShowSignup(false);
-        setIsAuth(true);
-        setEmail(''); setPassword(''); setName('');
+        contextLogin(loginRes.token, loginRes.user);
+        setEmail('');
+        setPassword('');
+        setName('');
         navigate('/dashboard');
       } else {
         setError('Registrado, pero error al iniciar sesión');
@@ -59,10 +63,18 @@ function Navbar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setIsAuth(false);
+    contextLogout();
     navigate('/');
+  };
+
+  const handleShowLogin = () => {
+    setError('');
+    showLogin();
+  };
+
+  const handleShowSignup = () => {
+    setError('');
+    showSignup();
   };
 
   return (
@@ -74,17 +86,17 @@ function Navbar() {
         <li><a href="#contact">Contacto</a></li>
       </ul>
       <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-        {!isAuth && (
+        {!isAuthenticated && (
           <>
-            <button className="navbar-login" onClick={() => { setShowLogin(true); setShowSignup(false); setError(''); }}>Iniciar Sesión</button>
-            <button className="navbar-login" onClick={() => { setShowSignup(true); setShowLogin(false); setError(''); }}>Registrarse</button>
+            <button className="navbar-login" onClick={handleShowLogin}>Iniciar Sesión</button>
+            <button className="navbar-login" onClick={handleShowSignup}>Registrarse</button>
           </>
         )}
-        {isAuth && (
+        {isAuthenticated && (
           <button className="navbar-login" onClick={handleLogout}>Cerrar Sesión</button>
         )}
       </div>
-      {showLogin && !isAuth && (
+      {showLoginModal && !isAuthenticated && (
         <div className="login-modal">
           <form className="login-form" onSubmit={handleLogin}>
             <h3>Iniciar Sesión</h3>
@@ -92,14 +104,14 @@ function Navbar() {
             <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} required />
             {error && <div className="login-error">{error}</div>}
             <button type="submit" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</button>
-            <button type="button" onClick={() => setShowLogin(false)}>Cancelar</button>
+            <button type="button" onClick={closeModals}>Cancelar</button>
             <div style={{marginTop:8}}>
-              ¿No tienes cuenta? <span style={{color:'#2563eb', cursor:'pointer'}} onClick={() => { setShowSignup(true); setShowLogin(false); setError(''); }}>Regístrate</span>
+              ¿No tienes cuenta? <span style={{color:'#2563eb', cursor:'pointer'}} onClick={handleShowSignup}>Regístrate</span>
             </div>
           </form>
         </div>
       )}
-      {showSignup && !isAuth && (
+      {showSignupModal && !isAuthenticated && (
         <div className="login-modal">
           <form className="login-form" onSubmit={handleSignup}>
             <h3>Registrarse</h3>
@@ -108,9 +120,9 @@ function Navbar() {
             <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} required />
             {error && <div className="login-error">{error}</div>}
             <button type="submit" disabled={loading}>{loading ? 'Registrando...' : 'Registrarse'}</button>
-            <button type="button" onClick={() => setShowSignup(false)}>Cancelar</button>
+            <button type="button" onClick={closeModals}>Cancelar</button>
             <div style={{marginTop:8}}>
-              ¿Ya tienes cuenta? <span style={{color:'#2563eb', cursor:'pointer'}} onClick={() => { setShowLogin(true); setShowSignup(false); setError(''); }}>Inicia sesión</span>
+              ¿Ya tienes cuenta? <span style={{color:'#2563eb', cursor:'pointer'}} onClick={handleShowLogin}>Inicia sesión</span>
             </div>
           </form>
         </div>

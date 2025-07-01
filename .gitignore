@@ -1,0 +1,9 @@
+# Ignorar dependencias
+node_modules/
+
+# Variables de entorno
+.env
+
+# Archivos de build (si tienes)
+build/
+dist/

@@ -4,7 +4,6 @@ import { getSmartRecommendations } from '../services/geminiApi';
 import WeatherCard from './WeatherCard';
 import HourlyForecast from './HourlyForecast';
 import WeatherDetails from './WeatherDetails';
-// import ExposureSummary from './ExposureSummary';
 import UvChart from './UvChart';
 import './DashboardMain.css';
 
