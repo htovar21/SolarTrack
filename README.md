@@ -76,14 +76,16 @@ SolarTrack es una aplicación web fullstack moderna que te ayuda a monitorear tu
 - npm o yarn
 - MongoDB Atlas (cuenta gratuita)
 
-### Configuración del Frontend
+### Configuración Local
+
+#### Frontend
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-### Configuración del Backend
+#### Backend
 ```bash
 cd backend
 npm install
@@ -91,13 +93,51 @@ npm start
 ```
 
 ### Variables de Entorno
-Crear archivo `.env` en el directorio backend:
+
+#### Backend (.env)
+```env
+MONGO_URI=tu_uri_de_mongodb_atlas
+JWT_SECRET=tu_jwt_secret_super_seguro
+PORT=4000
 ```
-MONGODB_URI=tu_uri_de_mongodb_atlas
-JWT_SECRET=tu_jwt_secret
-WEATHER_API_KEY=tu_api_key_de_weatherapi
-GEMINI_API_KEY=tu_api_key_de_gemini
+
+#### Frontend (.env)
+```env
+REACT_APP_API_URL=http://localhost:4000/api
 ```
+
+## 🌐 Despliegue en Render
+
+### Opción 1: Despliegue Automático (Recomendado)
+
+1. **Conecta tu repositorio de GitHub a Render**
+2. **Crea dos servicios web:**
+   - **Backend**: Usa el directorio `backend/`
+   - **Frontend**: Usa el directorio `frontend/`
+
+### Opción 2: Usando render.yaml
+
+El proyecto incluye un archivo `render.yaml` que configura automáticamente ambos servicios.
+
+### Configuración en Render
+
+#### Backend
+- **Build Command**: `cd backend && npm install`
+- **Start Command**: `cd backend && npm start`
+- **Variables de Entorno**:
+  - `MONGO_URI`: Tu URI de MongoDB Atlas
+  - `JWT_SECRET`: Tu JWT secret
+  - `NODE_ENV`: `production`
+
+#### Frontend
+- **Build Command**: `cd frontend && npm install && npm run build`
+- **Static Publish Path**: `frontend/build`
+- **Variables de Entorno**:
+  - `REACT_APP_API_URL`: URL de tu backend en Render
+
+### URLs de Ejemplo
+- **Backend**: `https://solartrack-backend.onrender.com`
+- **Frontend**: `https://solartrack-frontend.onrender.com`
 
 ## 📊 Estructura del Proyecto
 
