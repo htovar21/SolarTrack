@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import DashboardMain from './DashboardMain';
 import ExposureManager from './ExposureManager';
+import UserProfile from './UserProfile';
 import './DashboardLayout.css';
 
 function DashboardLayout() {
@@ -19,10 +20,11 @@ function DashboardLayout() {
 
   // Determinar qué componente mostrar basado en la ruta actual
   const renderContent = () => {
-    console.log('Ruta actual:', location.pathname); // Debug
-    
     if (location.pathname === '/exposures') {
       return <ExposureManager />;
+    }
+    if (location.pathname === '/perfil') {
+      return <UserProfile />;
     }
     // Para cualquier otra ruta (incluyendo /dashboard, /, etc.)
     return <DashboardMain />;
@@ -58,7 +60,6 @@ function DashboardLayout() {
           <div className="header-title">
             <h1>SolarTrack</h1>
             <p>Tu compañero solar inteligente</p>
-            <small style={{ color: '#666' }}>Ruta: {location.pathname}</small>
           </div>
         </header>
 

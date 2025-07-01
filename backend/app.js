@@ -30,8 +30,6 @@ app.get('/', (req, res) => {
   res.send('API SolarTrack funcionando');
 });
 
-// TODO: importar y usar rutas de auth, exposures, weather
-
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor backend escuchando en puerto ${PORT}`);

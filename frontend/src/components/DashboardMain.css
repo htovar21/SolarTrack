@@ -1,64 +1,65 @@
 .dashboard-main {
-  padding: 24px;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 18px 0;
+  background: none;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 /* Header del dashboard */
 .dashboard-header {
-  margin-bottom: 24px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 10px;
 }
 
 .city-selector {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #22223b;
 }
 
 .current-city {
-  font-size: 1.1rem;
+  background: #e7e8fc;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 1rem;
   font-weight: 600;
-  color: #2d3748;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
 }
 
 .change-city-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
+  color: #fff;
   border: none;
-  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  transition: background 0.2s, transform 0.1s;
 }
 
 .change-city-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background: #5a67d8;
+  transform: scale(1.08);
 }
 
 .city-input-form {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .city-input-form input {
@@ -114,49 +115,46 @@
 /* Grid principal del dashboard */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 24px;
-  align-items: start;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
 }
 
 /* Columna izquierda */
 .dashboard-left-column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 /* Columna derecha */
 .dashboard-right-column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   position: sticky;
   top: 24px;
 }
 
 /* Tarjeta de recomendaciones */
-.recommendations-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.recommendations-card, .weather-card, .uv-chart-container, .hourly-forecast-container, .weather-details-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.08);
+  padding: 16px 12px;
+  margin-bottom: 0;
+  transition: box-shadow 0.2s, transform 0.1s;
 }
 
-.recommendations-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.recommendations-card:hover, .weather-card:hover, .uv-chart-container:hover, .hourly-forecast-container:hover, .weather-details-card:hover {
+  box-shadow: 0 4px 18px rgba(102, 126, 234, 0.13);
+  transform: translateY(-1px) scale(1.01);
 }
 
 .recommendations-title {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: #2d3748;
-  margin: 0;
+  color: #22223b;
+  margin-bottom: 8px;
 }
 
 .refresh-recommendations-btn {
@@ -206,11 +204,9 @@
 
 /* Estilos para el texto de recomendaciones */
 .smart-recommendations-text {
+  font-size: 0.97rem;
+  color: #2d3748;
   line-height: 1.6;
-  color: #333;
-  font-size: 0.95rem;
-  text-align: left;
-  white-space: pre-line;
 }
 
 .smart-recommendations-text h4 {
@@ -316,38 +312,21 @@
 }
 
 /* Estados de carga y error */
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  font-size: 1.1rem;
+.loading-container, .error-container, .no-data {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 1rem;
   color: #4a5568;
-}
-
-.error-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  font-size: 1.1rem;
-  color: #e53e3e;
-}
-
-.no-data {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  font-size: 1.1rem;
-  color: #718096;
 }
 
 /* Responsive para tablets */
 @media (max-width: 1024px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 14px;
   }
   
   .dashboard-right-column {
@@ -355,20 +334,20 @@
   }
   
   .dashboard-main {
-    padding: 20px;
+    padding: 10px 0;
   }
 }
 
 /* Responsive para móviles */
 @media (max-width: 768px) {
   .dashboard-main {
-    padding: 16px;
+    padding: 6px 0;
   }
   
   .dashboard-header {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 8px;
   }
   
   .city-selector {
@@ -385,8 +364,8 @@
     width: 100%;
   }
   
-  .recommendations-card {
-    padding: 20px;
+  .recommendations-card, .weather-card, .uv-chart-container, .hourly-forecast-container, .weather-details-card {
+    padding: 8px 4px;
   }
   
   .recommendations-title {
@@ -412,7 +391,7 @@
     font-size: 1rem;
   }
   
-  .recommendations-card {
+  .recommendations-card, .weather-card, .uv-chart-container, .hourly-forecast-container, .weather-details-card {
     padding: 16px;
   }
   

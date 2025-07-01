@@ -1,16 +1,18 @@
 .sidebar {
   position: fixed;
   top: 0;
-  left: -280px;
+  left: -100%;
   width: 280px;
   height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  transition: left 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar-open {
@@ -21,6 +23,7 @@
   padding: 32px 24px 24px 24px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
 .sidebar-title {
@@ -43,6 +46,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
 }
 
 .nav-item {
@@ -58,6 +62,24 @@
   transition: all 0.3s ease;
   text-align: left;
   width: 100%;
+  min-height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.nav-item:hover::before {
+  left: 100%;
 }
 
 .nav-item:hover {
@@ -68,34 +90,45 @@
 .nav-item-active {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid rgba(255, 255, 255, 0.8);
 }
 
 .nav-icon {
   font-size: 1.4rem;
   width: 24px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .nav-content {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1;
+  min-width: 0;
 }
 
 .nav-label {
   font-size: 1rem;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-description {
   font-size: 0.8rem;
   opacity: 0.8;
   font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar-footer {
   padding: 24px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
 .logout-btn {
@@ -112,6 +145,7 @@
   transition: all 0.3s ease;
   font-size: 0.9rem;
   font-weight: 500;
+  min-height: 48px;
 }
 
 .logout-btn:hover {
@@ -121,36 +155,35 @@
 
 .logout-icon {
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
-/* Overlay para móviles */
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+/* Scrollbar personalizada para el sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
 }
 
-.sidebar-overlay.active {
-  opacity: 1;
-  visibility: visible;
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive para tablets */
-@media (max-width: 768px) {
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive para tablets grandes */
+@media (max-width: 1024px) {
   .sidebar {
     width: 260px;
-    left: -260px;
   }
   
   .sidebar-header {
-    padding: 24px 20px 20px 20px;
+    padding: 28px 20px 20px 20px;
   }
   
   .sidebar-title {
@@ -163,6 +196,7 @@
   
   .nav-item {
     padding: 14px 16px;
+    min-height: 56px;
   }
   
   .nav-icon {
@@ -175,6 +209,56 @@
   
   .nav-description {
     font-size: 0.75rem;
+  }
+}
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 280px;
+  }
+  
+  .sidebar-header {
+    padding: 24px 20px 20px 20px;
+  }
+  
+  .sidebar-title {
+    font-size: 1.5rem;
+  }
+  
+  .sidebar-subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .sidebar-nav {
+    padding: 18px 12px;
+  }
+  
+  .nav-item {
+    padding: 14px 16px;
+    min-height: 52px;
+  }
+  
+  .nav-icon {
+    font-size: 1.2rem;
+  }
+  
+  .nav-label {
+    font-size: 0.9rem;
+  }
+  
+  .nav-description {
+    font-size: 0.7rem;
+  }
+  
+  .sidebar-footer {
+    padding: 20px 12px;
+  }
+  
+  .logout-btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    min-height: 44px;
   }
 }
 
@@ -194,7 +278,7 @@
   }
   
   .sidebar-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   
   .sidebar-nav {
@@ -203,26 +287,118 @@
   
   .nav-item {
     padding: 12px 12px;
+    min-height: 48px;
+    gap: 12px;
   }
   
   .nav-icon {
     font-size: 1.1rem;
+    width: 20px;
   }
   
   .nav-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .nav-description {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
   
   .sidebar-footer {
-    padding: 20px 12px;
+    padding: 16px 8px;
   }
   
   .logout-btn {
     padding: 10px 12px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    min-height: 40px;
+    gap: 8px;
+  }
+  
+  .logout-icon {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 360px) {
+  .sidebar-header {
+    padding: 16px 12px 12px 12px;
+  }
+  
+  .sidebar-title {
+    font-size: 1.2rem;
+  }
+  
+  .sidebar-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .sidebar-nav {
+    padding: 12px 6px;
+  }
+  
+  .nav-item {
+    padding: 10px 8px;
+    min-height: 44px;
+    gap: 8px;
+  }
+  
+  .nav-icon {
+    font-size: 1rem;
+    width: 18px;
+  }
+  
+  .nav-label {
+    font-size: 0.8rem;
+  }
+  
+  .nav-description {
+    font-size: 0.6rem;
+  }
+  
+  .sidebar-footer {
+    padding: 12px 6px;
+  }
+  
+  .logout-btn {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+}
+
+/* Mejoras para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .nav-item {
+    min-height: 56px;
+  }
+  
+  .nav-item:hover {
+    transform: none;
+  }
+  
+  .nav-item:active {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(0.98);
+  }
+  
+  .logout-btn {
+    min-height: 48px;
+  }
+  
+  .logout-btn:hover {
+    transform: none;
+  }
+  
+  .logout-btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Soporte para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
   }
 } 
