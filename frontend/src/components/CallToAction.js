@@ -17,8 +17,18 @@ function CallToAction() {
 
   return (
     <section className="cta-section">
-      <h2>Empieza a proteger tu piel de forma inteligente hoy mismo.</h2>
-      <button className="cta-btn" onClick={handleClick}>Empieza gratis hoy</button>
+      <div className="cta-background">
+        <img 
+          src="https://cdn.pixabay.com/photo/2023/08/27/00/08/cycling-8215968_640.jpg" 
+          alt="Personas disfrutando actividades al aire libre" 
+          className="cta-bg-img"
+        />
+        <div className="cta-overlay"></div>
+      </div>
+      <div className="cta-content">
+        <h2>Empieza a proteger tu piel de forma inteligente hoy mismo.</h2>
+        <button className="cta-btn" onClick={handleClick}>Empieza gratis hoy</button>
+      </div>
     </section>
   );
 }

@@ -28,6 +28,19 @@
   margin-bottom: 24px;
 }
 
+.benefit-icon {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.benefit-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
 .benefit-card h3 {
   font-size: 1.15rem;
   margin-bottom: 12px;
@@ -47,5 +60,9 @@
   }
   .benefit-card {
     max-width: 95vw;
+  }
+  .benefit-img {
+    width: 56px;
+    height: 56px;
   }
 } 
