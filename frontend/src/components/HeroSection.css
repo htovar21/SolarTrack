@@ -49,6 +49,15 @@
   padding: 0 40px;
 }
 
+.hero-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  max-height: 400px;
+}
+
 @media (max-width: 900px) {
   .hero-section {
     flex-direction: column;
@@ -60,5 +69,8 @@
   }
   .hero-image {
     margin-top: 32px;
+  }
+  .hero-img {
+    max-height: 300px;
   }
 } 

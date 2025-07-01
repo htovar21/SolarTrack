@@ -26,19 +26,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 /* Cuando agregues la imagen/avatar, usa esta clase: */
 .testimonial-avatar {
-  width: 38px;
-  height: 38px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .testimonial-name {
   font-weight: 500;
   font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .testimonial-avatar {
+    width: 60px;
+    height: 60px;
+  }
+  .testimonial-user {
+    gap: 10px;
+  }
 } 

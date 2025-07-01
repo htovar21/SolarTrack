@@ -23,7 +23,11 @@ function HeroSection() {
         <button className="hero-btn" onClick={handleClick}>Empieza gratis hoy</button>
       </div>
       <div className="hero-image">
-        {/* Aquí irá la imagen principal de la landing page */}
+        <img 
+          src="https://cdn.pixabay.com/photo/2016/11/29/06/17/woman-1867757_960_720.jpg" 
+          alt="Mujer disfrutando del sol al aire libre" 
+          className="hero-img"
+        />
       </div>
     </section>
   );

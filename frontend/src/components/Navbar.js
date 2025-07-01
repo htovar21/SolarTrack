@@ -79,7 +79,14 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">SolarTrack</div>
+      <div className="navbar-logo">
+        <img 
+          src="/solartrack-logo.png" 
+          alt="Logo de SolarTrack" 
+          className="navbar-logo-img"
+        />
+        <span className="navbar-logo-text">SolarTrack</span>
+      </div>
       <ul className="navbar-links">
         <li><a href="#features">Características</a></li>
         <li><a href="#testimonials">Testimonios</a></li>
